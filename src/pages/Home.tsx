@@ -1,5 +1,5 @@
-import { Copyright } from "../config/components/CopyRight";
-import NOT_FOUND from "../config/components/NOT_FOUND";
+import { Copyright } from "../components/CopyRight";
+import NOT_FOUND from "../components/NOT_FOUND";
 
 export const Home = () => {
   return (

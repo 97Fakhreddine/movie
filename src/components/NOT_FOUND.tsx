@@ -4,8 +4,8 @@ import Typed from "react-typed";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router";
 
-import image404 from "../../assets/images/page404animation.gif";
-import "../../assets/styles/pageNotFound.css";
+import image404 from "../assets/images/page404animation.gif";
+import "../assets/styles/pageNotFound.css";
 
 const useStyles = makeStyles((theme: Theme) => ({
   avatar: {
