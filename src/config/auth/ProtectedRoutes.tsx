@@ -13,20 +13,13 @@ export const ProtectedRoute = ({
   return (
     <Route
       {...rest}
-      render={(props: any) => {
-        if (authenticated) {
-          return <Component {...props} />;
-        } else {
-          <Redirect
-            to={{
-              pathname: "/",
-              state: {
-                from: props.location,
-              },
-            }}
-          />;
-        }
-      }}
+      render={(props) =>
+        authenticated === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      }
     />
   );
 };

@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 import { ProtectedRoute } from "../config/auth/ProtectedRoutes";
 import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
@@ -15,12 +15,12 @@ function App() {
           authenticated={true}
         />
         <ProtectedRoute
-          authenticated={false}
+          authenticated={true}
           path='/signin'
           exact
           component={SignIn}
         />
-        <ProtectedRoute authenticated={false} path='/' exact component={Home} />
+        <ProtectedRoute authenticated={true} path='/' exact component={Home} />
       </Switch>
     </BrowserRouter>
   );
