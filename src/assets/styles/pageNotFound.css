@@ -1,0 +1,26 @@
+.container {
+  display: inline-flex;
+  justify-content: center;
+  margin: auto;
+  position: relative;
+}
+.image-btn {
+  display: block;
+  float: left;
+  position: relative;
+  margin: 2%;
+}
+
+@media only screen and (max-width: 980px) {
+  body {
+    background-color: whitesmoke;
+  }
+  .container {
+    display: block;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    float: left;
+    font-size: 1em;
+  }
+}
