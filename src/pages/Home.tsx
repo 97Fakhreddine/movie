@@ -1,5 +1,6 @@
 import { Copyright } from "../components/CopyRight";
 import "../assets/styles/home.css";
+import { Spinner } from "../components/Spinner";
 export const Home = () => {
   return (
     <div>
@@ -19,11 +20,7 @@ export const Home = () => {
 
           <div className='main'>
             <h2>The Walk</h2>
-            <p>
-              The walk from Monterosso to Riomaggiore will take you
-              approximately two hours, give or take an hour depending on the
-              weather conditions and your physical shape.
-            </p>
+            <p>{/* <Spinner /> */}</p>
             <img src='img_5terre.jpg' style={{ width: "100%" }} alt='' />
           </div>
 

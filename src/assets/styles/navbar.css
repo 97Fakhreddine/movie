@@ -1,0 +1,15 @@
+.logo {
+  width: 260px;
+}
+.navbar-nav {
+  position: relative !important;
+  float: right !important;
+}
+.li {
+  cursor: pointer;
+}
+@media only screen and (max-width: 980px) {
+  .logo {
+    width: 180px;
+  }
+}
