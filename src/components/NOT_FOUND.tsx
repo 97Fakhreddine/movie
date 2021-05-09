@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 
 import image404 from "../assets/images/page404animation.gif";
 import "../assets/styles/pageNotFound.css";
+import { Copyright } from "./CopyRight";
 
 const useStyles = makeStyles((theme: Theme) => ({
   avatar: {
@@ -42,27 +43,30 @@ const NOT_FOUND = () => {
   };
 
   return (
-    <div className='container'>
-      <div className='image-btn'>
-        <img src={image404} alt='' />
-        <Button
-          size={screenSize < 900 ? "small" : "large"}
-          color='secondary'
-          onClick={goBackHome}>
-          Go Back Home
-        </Button>
+    <div>
+      <div className='container'>
+        <div className='image-btn'>
+          <img src={image404} alt='' />
+          <Button
+            size={screenSize < 900 ? "small" : "large"}
+            color='secondary'
+            onClick={goBackHome}>
+            Go Back Home
+          </Button>
+        </div>
+        <Typography className={classes.title} variant='h1'>
+          <Typed
+            strings={[
+              "This page could not be found",
+              "It might be removed or not found",
+            ]}
+            typeSpeed={100}
+            backSpeed={100}
+            loop
+          />
+        </Typography>
       </div>
-      <Typography className={classes.title} variant='h1'>
-        <Typed
-          strings={[
-            "This page could not be found",
-            "It might be removed or not found",
-          ]}
-          typeSpeed={100}
-          backSpeed={100}
-          loop
-        />
-      </Typography>
+      <Copyright />
     </div>
   );
 };
