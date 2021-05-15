@@ -39,7 +39,7 @@ export const NavBar = () => {
           <li
             className='nav-item'
             onClick={() => {
-              history.push("/signin");
+              history.push("/signup");
             }}>
             <div className='nav-link li'>Sign up</div>
           </li>

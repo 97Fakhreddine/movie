@@ -1,7 +1,9 @@
 import { ChangeEvent, useState } from "react";
+import { useHistory } from "react-router-dom";
 import "../assets/styles/signup.css";
 import { SignUpForm } from "../config/types/formTypes";
 export const SignUp = () => {
+  const history = useHistory();
 
   /**
    *@function handleSignupForm
@@ -16,7 +18,6 @@ export const SignUp = () => {
     password: "",
   });
 
-  
   const handleSignupForm = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setSignUpForm({
@@ -57,7 +58,7 @@ export const SignUp = () => {
             />
             <input
               className='form__input'
-              type='text'
+              type='email'
               placeholder='Email'
               name='email'
               required
@@ -83,8 +84,10 @@ export const SignUp = () => {
             <p className='switch__description description'>
               To keep connected with us please login with your personal info
             </p>
-            <button className='switch__button button switch-btn'>
-              SIGN IN
+            <button
+              className='switch__button button switch-btn'
+              onClick={() => history.push("login")}>
+              Login?
             </button>
           </div>
           <div className='switch__container is-hidden' id='switch-c2'>
@@ -92,7 +95,9 @@ export const SignUp = () => {
             <p className='switch__description description'>
               Enter your personal details and start journey with us
             </p>
-            <button className='switch__button button switch-btn'>
+            <button
+              className='switch__button button switch-btn'
+              onClick={() => history.push("signup")}>
               SIGN UP
             </button>
           </div>

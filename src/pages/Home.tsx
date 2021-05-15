@@ -1,68 +1,67 @@
 import { Copyright } from "../components/CopyRight";
 import "../assets/styles/home.css";
 import { NavBar } from "../components/NavBar";
+import { useHistory } from "react-router-dom";
+import picture1 from "../assets/images/home1.jpg";
+import picture2 from "../assets/images/home2.jpeg";
+import picture3 from "../assets/images/home3.jpg";
 export const Home = () => {
+  const history = useHistory();
   return (
     <div>
       <NavBar />
-      <div style={{ textAlign: "center" }}>
-        <h2>Responsive Zig Zag Layout Example</h2>
-        <p>Resize the browser window to see the effect.</p>
-      </div>
-      <div className='container-home'>
+      <div
+        style={{
+          textAlign: "center",
+          padding: "2%",
+          backgroundColor: "white",
+        }}></div>
+      <div className='container-home' style={{ backgroundColor: "#CBCBCB " }}>
         <div className='row'>
           <div className='column-66'>
             <h1 className='xlarge-font'>
-              <b>The App</b>
+              <b>Unlimited movies, TV shows, and more.</b>
             </h1>
             <h1 className='large-font' style={{ color: "MediumSeaGreen;" }}>
-              <b>Why buy it?</b>
+              <b>Enjoy on your TV.</b>
             </h1>
             <p>
-              <span style={{ fontSize: "6px" }}>Take photos like a pro.</span>{" "}
-              You should buy this app because lorem ipsum consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat.
+              Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV,
+              Blu-ray players, and more.
             </p>
-            <button className='button'>Download Application</button>
           </div>
           <div className='column-33'>
-            <img
-              src='https://ctp-media.imigino.com/image/1/process/nullxnull?source=https://d27lrc1xrjs9qh.cloudfront.net/wp-content/uploads/sites/56/2018/07/Movie.jpg'
-              width='335'
-              height='471'
-            />
+            {/* <img src={picture1} width='935' height='471' /> */}
+            <iframe
+              src='https://giphy.com/embed/26z0F0MNNp8f4HEAw'
+              width='480'
+              height='268'
+              frameBorder='0'
+              className='giphy-embed'
+              allowFullScreen></iframe>
+            <p>
+              <a href='https://giphy.com/gifs/angrybirds-1-angry-birds-movie-26z0F0MNNp8f4HEAw'>
+                via GIPHY
+              </a>
+            </p>
           </div>
         </div>
       </div>
       <div className='container-home' style={{ backgroundColor: "#f1f1f1" }}>
         <div className='row'>
           <div className='column-33'>
-            <img
-              src='https://neurosciencemajor.osu.edu/sites/default/files/events-images/movie_night.jpg'
-              alt='App'
-              width='335'
-              height='471'
-            />
+            <img src={picture2} alt='App' width='835' height='471' />
           </div>
           <div className='column-66'>
             <h1 className='xlarge-font'>
-              <b>Clarity</b>
+              <b>All your Best Movies</b>
             </h1>
             <h1 className='large-font' style={{ color: "red;" }}>
-              <b>Pixels, who?</b>
+              <b>Watch everywhere.</b>
             </h1>
             <p>
-              <span style={{ fontSize: "24px" }}>
-                A revolution in resolution.
-              </span>{" "}
-              Sharp and clear photos with the world's best photo engine,
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquipex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur.
+              Stream unlimited movies and TV shows on your phone, tablet,
+              laptop, and TV without paying more.
             </p>
             <button className='button' style={{ backgroundColor: "red" }}>
               Read More
@@ -70,36 +69,45 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className='container-home'>
+      <div className='container-home' style={{ backgroundColor: "#CBCBCB " }}>
         <div className='row'>
           <div className='column-66'>
             <h1 className='xlarge-font'>
-              <b>The App</b>
+              <b>Ready to watch?</b>
             </h1>
             <h1 className='large-font' style={{ color: "MediumSeaGreen" }}>
-              <b>Why buy it?</b>
+              <b>Join the Community</b>
             </h1>
             <p>
-              <span style={{ fontSize: "36px" }}>Take photos like a pro.</span>{" "}
-              You should buy this app because lorem ipsum consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur.
+              <span style={{ fontSize: "36px" }}>Where can I watch?</span> Watch
+              anywhere, anytime, on an unlimited number of devices. Sign in with
+              your Netflix account to watch instantly on the web at netflix.com
+              from your personal computer or on any internet-connected device
+              that offers the Netflix app, including smart TVs, smartphones,
+              tablets, streaming media players and game consoles.
             </p>
-            <button className='button'>Download Application</button>
+            <button className='button' onClick={() => history.push("/signin")}>
+              Signup now
+            </button>
           </div>
           <div className='column-33'>
-            <img
-              src='https://benonicitytimes.co.za/wp-content/uploads/sites/26/2016/04/Movies1.jpg'
-              width='335'
-              height='471'
-            />
+            {/* <img src={picture3} width='835' height='471' /> */}
+            <iframe
+              src='https://giphy.com/embed/iFz5tPD3m0yEKOxuNT'
+              width='480'
+              height='270'
+              frameBorder='0'
+              className='giphy-embed'
+              allowFullScreen></iframe>
+            <p>
+              <a href='https://giphy.com/gifs/AngryBirdsMovie-iFz5tPD3m0yEKOxuNT'>
+                via GIPHY
+              </a>
+            </p>
           </div>
         </div>
       </div>{" "}
-      <div style={{ backgroundColor: "white" }}>
+      <div style={{ backgroundColor: "white", padding: "2%" }}>
         <Copyright />
       </div>
     </div>
