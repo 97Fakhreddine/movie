@@ -1,13 +1,12 @@
 import "../assets/styles/spinner.css";
 export const Spinner = () => {
   return (
-    <div id='circle'>
+    <div className='m-5 p-5'>
       <div className='loader'>
-        <div className='loader'>
-          <div className='loader'>
-            <div className='loader'></div>
-          </div>
-        </div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
   );

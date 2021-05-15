@@ -18,7 +18,7 @@ function App() {
         />
         <ProtectedRoute
           authenticated={true}
-          path='/signin'
+          path='/signup'
           exact
           component={SignIn}
         />

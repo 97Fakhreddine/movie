@@ -1,56 +1,114 @@
 import { Copyright } from "../components/CopyRight";
 import "../assets/styles/home.css";
-import { Spinner } from "../components/Spinner";
+import { NavBar } from "../components/NavBar";
+import { useHistory } from "react-router-dom";
+import picture1 from "../assets/images/home1.jpg";
+import picture2 from "../assets/images/home2.jpeg";
+import picture3 from "../assets/images/home3.jpg";
 export const Home = () => {
+  const history = useHistory();
   return (
     <div>
-      <div style={{ fontFamily: "Verdana" }}>
-        <div style={{ backgroundColor: "#f1f1f1", padding: "15px" }}>
-          <h1>Cinque Terre</h1>
-          <h3>Resize the browser window</h3>
-        </div>
-
-        <div style={{ overflow: "auto" }}>
-          <div className='menu'>
-            <div className='menuitem'>The Walk</div>
-            <div className='menuitem'>Transport</div>
-            <div className='menuitem'>History</div>
-            <div className='menuitem'>Gallery</div>
-          </div>
-
-          <div className='main'>
-            <h2>The Walk</h2>
-            <p>{/* <Spinner /> */}</p>
-            <img src='img_5terre.jpg' style={{ width: "100%" }} alt='' />
-          </div>
-
-          <div className='right'>
-            <h2>What?</h2>
+      <NavBar />
+      <div
+        style={{
+          textAlign: "center",
+          padding: "2%",
+          backgroundColor: "white",
+        }}></div>
+      <div className='container-home' style={{ backgroundColor: "#CBCBCB " }}>
+        <div className='row'>
+          <div className='column-66'>
+            <h1 className='xlarge-font'>
+              <b>Unlimited movies, TV shows, and more.</b>
+            </h1>
+            <h1 className='large-font' style={{ color: "MediumSeaGreen;" }}>
+              <b>Enjoy on your TV.</b>
+            </h1>
             <p>
-              Cinque Terre comprises five villages: Monterosso, Vernazza,
-              Corniglia, Manarola, and Riomaggiore.
+              Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV,
+              Blu-ray players, and more.
             </p>
-            <h2>Where?</h2>
+          </div>
+          <div className='column-33'>
+            {/* <img src={picture1} width='935' height='471' /> */}
+            <iframe
+              src='https://giphy.com/embed/26z0F0MNNp8f4HEAw'
+              width='480'
+              height='268'
+              frameBorder='0'
+              className='giphy-embed'
+              allowFullScreen></iframe>
             <p>
-              On the northwest cost of the Italian Riviera, north of the city La
-              Spezia.
+              <a href='https://giphy.com/gifs/angrybirds-1-angry-birds-movie-26z0F0MNNp8f4HEAw'>
+                via GIPHY
+              </a>
             </p>
-            <h2>Price?</h2>
-            <p>The Walk is free!</p>
           </div>
         </div>
-
-        <div
-          style={{
-            backgroundColor: "#f1f1f1",
-            textAlign: "center",
-            padding: "10px",
-            marginTop: "7px",
-            fontSize: "12px",
-          }}>
-          {" "}
-          <Copyright />
+      </div>
+      <div className='container-home' style={{ backgroundColor: "#f1f1f1" }}>
+        <div className='row'>
+          <div className='column-33'>
+            <img src={picture2} alt='App' width='835' height='471' />
+          </div>
+          <div className='column-66'>
+            <h1 className='xlarge-font'>
+              <b>All your Best Movies</b>
+            </h1>
+            <h1 className='large-font' style={{ color: "red;" }}>
+              <b>Watch everywhere.</b>
+            </h1>
+            <p>
+              Stream unlimited movies and TV shows on your phone, tablet,
+              laptop, and TV without paying more.
+            </p>
+            <button className='button' style={{ backgroundColor: "red" }}>
+              Read More
+            </button>
+          </div>
         </div>
+      </div>
+      <div className='container-home' style={{ backgroundColor: "#CBCBCB " }}>
+        <div className='row'>
+          <div className='column-66'>
+            <h1 className='xlarge-font'>
+              <b>Ready to watch?</b>
+            </h1>
+            <h1 className='large-font' style={{ color: "MediumSeaGreen" }}>
+              <b>Join the Community</b>
+            </h1>
+            <p>
+              <span style={{ fontSize: "36px" }}>Where can I watch?</span> Watch
+              anywhere, anytime, on an unlimited number of devices. Sign in with
+              your Netflix account to watch instantly on the web at netflix.com
+              from your personal computer or on any internet-connected device
+              that offers the Netflix app, including smart TVs, smartphones,
+              tablets, streaming media players and game consoles.
+            </p>
+            <button className='button' onClick={() => history.push("/signin")}>
+              Signup now
+            </button>
+          </div>
+          <div className='column-33'>
+            {/* <img src={picture3} width='835' height='471' /> */}
+            <iframe
+              src='https://giphy.com/embed/iFz5tPD3m0yEKOxuNT'
+              width='480'
+              height='270'
+              frameBorder='0'
+              className='giphy-embed'
+              allowFullScreen></iframe>
+            <p>
+              <a href='https://giphy.com/gifs/AngryBirdsMovie-iFz5tPD3m0yEKOxuNT'>
+                via GIPHY
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>{" "}
+      <div style={{ backgroundColor: "white", padding: "2%" }}>
+        <Copyright />
       </div>
     </div>
   );

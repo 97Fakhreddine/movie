@@ -1,22 +1,23 @@
-export default function Movie() {
+import { base_url } from "../config/baseURLImage";
+import { Imovie } from "../config/types/movie";
+
+export default function Movie({ movie }: Imovie | any) {
   return (
     <div className='card'>
       <div className='image'>
-        <img src='https://pictures.artify.tn/media/j2r6xkadjjyhn0iaalk4.jpg?' />
+        <img src={base_url + movie.backdrop_path} alt='' />
       </div>
       <div className='content'>
-        <div className='header'>Matt Giampietro</div>
+        <div className='header'>Episode {movie.title}</div>
         <div className='meta'>
-          <a>Friends</a>
+          <a>Realise Date: {movie.release_date}</a>
         </div>
-        <div className='description'>
-          Matthew is an interior designer living in New York.
-        </div>
+        {/* <div className='description'>{movie.overview}</div> */}
       </div>
       <div className='extra content'>
         <span>
-          <i className='user icon'></i>
-          75 Friends
+          <i className='star icon'></i>
+          popularity:{movie.popularity}
         </span>
       </div>
     </div>

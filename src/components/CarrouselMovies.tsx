@@ -1,21 +1,34 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-
+import { useSelector } from "react-redux";
+import { MoviesList } from "../config/redux/reducers/movieReducer";
+// import { base_url } from "../config/baseURLImage";
+import { v4 as uuid_v4 } from "uuid";
 export const CarrouselMovie = () => {
+  const store = useSelector((state: MoviesList) => state.movies);
+
+  const array = [1, 2, 3, 4, 5, 6, 7];
   return (
     <Carousel>
-      <div>
-        <img src='https://i.guim.co.uk/img/media/eb691a97f92b5c1a0ac1158614695a852473937f/0_0_4800_2880/master/4800.jpg?width=445&quality=45&auto=format&fit=max&dpr=2&s=226459208400d108b3bcc349d8cda585' />
-        <p className='legend'>Legend 1</p>
-      </div>
-      <div>
-        <img src='https://media.newyorker.com/photos/598872045839136c88e91dfb/16:9/w_4047,h_2276,c_limit/Larson-GoT-Season-7-Episode-4-Recap.jpg' />
-        <p className='legend'>Legend 2</p>
-      </div>
-      <div>
-        <img src='https://s2.best-wallpaper.net/wallpaper/3840x2160/1607/Emilia-Clarke-Game-of-Thrones-TV-series_3840x2160.jpg' />
-        <p className='legend'>Legend 3</p>
-      </div>
+      {/* {store?.results.map((movie, index) => {
+        return (
+          <div key={index}>
+            <img src={base_url + "" + movie.backdrop_path.slice(1)} />
+            <p className='legend'>Legend {index}</p>
+          </div>
+        );
+      })} */}
+      {array.map((el: number, index: number) => {
+        return (
+          <div key={uuid_v4() || index}>
+            <img
+              src='https://filmdaily.co/wp-content/uploads/2019/08/lede-lucifer-1300x731.jpg'
+              alt='...'
+            />
+            <p>episode {el}</p>
+          </div>
+        );
+      })}
     </Carousel>
   );
 };
