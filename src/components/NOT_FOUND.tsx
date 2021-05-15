@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
     zIndex: 12,
   },
+  body: {
+    backgroundColor: "white",
+  },
 }));
 const NOT_FOUND = () => {
   const classes = useStyles();
@@ -43,7 +46,7 @@ const NOT_FOUND = () => {
   };
 
   return (
-    <div>
+    <div style={{ backgroundColor: "white" }}>
       <div className='container'>
         <div className='image-btn'>
           <img src={image404} alt='' />

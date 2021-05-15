@@ -9,9 +9,7 @@ export default function Movie({ movie }: Imovie | any) {
       </div>
       <div className='content'>
         <div className='header'>Episode {movie.title}</div>
-        <div className='meta'>
-          <a>Realise Date: {movie.release_date}</a>
-        </div>
+        <div className='meta'>Realise Date: {movie.release_date}</div>
         {/* <div className='description'>{movie.overview}</div> */}
       </div>
       <div className='extra content'>

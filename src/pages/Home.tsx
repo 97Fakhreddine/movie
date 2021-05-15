@@ -2,9 +2,7 @@ import { Copyright } from "../components/CopyRight";
 import "../assets/styles/home.css";
 import { NavBar } from "../components/NavBar";
 import { useHistory } from "react-router-dom";
-import picture1 from "../assets/images/home1.jpg";
 import picture2 from "../assets/images/home2.jpeg";
-import picture3 from "../assets/images/home3.jpg";
 export const Home = () => {
   const history = useHistory();
   return (
@@ -38,6 +36,7 @@ export const Home = () => {
               height='268'
               frameBorder='0'
               className='giphy-embed'
+              title='first-gif'
               allowFullScreen></iframe>
             <p>
               <a href='https://giphy.com/gifs/angrybirds-1-angry-birds-movie-26z0F0MNNp8f4HEAw'>
@@ -86,7 +85,7 @@ export const Home = () => {
               that offers the Netflix app, including smart TVs, smartphones,
               tablets, streaming media players and game consoles.
             </p>
-            <button className='button' onClick={() => history.push("/signin")}>
+            <button className='button' onClick={() => history.push("/signup")}>
               Signup now
             </button>
           </div>
@@ -98,6 +97,7 @@ export const Home = () => {
               height='270'
               frameBorder='0'
               className='giphy-embed'
+              title='second-gif'
               allowFullScreen></iframe>
             <p>
               <a href='https://giphy.com/gifs/AngryBirdsMovie-iFz5tPD3m0yEKOxuNT'>
