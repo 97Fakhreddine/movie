@@ -1,3 +1,4 @@
+import { NavBar } from "../components/NavBar";
 export const Login = () => {
-  return <h1>this is login page</h1>;
+  return <NavBar />;
 };
