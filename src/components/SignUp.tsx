@@ -3,8 +3,11 @@ import { ChangeEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../assets/styles/signup.css";
 import { SignUpForm } from "../config/types/formTypes";
+import { useDispatch } from "react-redux";
+import { user } from "../config/redux/actions/signUp";
 export const SignUp = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   /**
    *@function handleSignupForm
@@ -42,7 +45,7 @@ export const SignUp = () => {
           console.log("==>", data);
           localStorage.setItem("token", data.token);
           localStorage.setItem("authenticated", data.authenticated);
-          
+          dispatch(user(data));
           history.push("/movies");
         })
         .catch((err) => console.error(err));
@@ -52,7 +55,12 @@ export const SignUp = () => {
     <div className='signup-container'>
       <div className='mainn'>
         <div className='containerr a-container' id='a-container'>
-          <form className='form' id='a-form'>
+          <form
+            className='form'
+            id='a-form'
+            onSubmit={(e) => {
+              signUp(e);
+            }}>
             <h2 className='form_title title'>Create Account</h2>
             <div className='form__iconss'>
               <img

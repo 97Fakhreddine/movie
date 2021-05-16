@@ -63,8 +63,8 @@ export class UsersService {
 
     async login(body:UserLogin):Promise<Error|LoginSuccess>{
         try{
-            console.log(body)
             const user:IUser = await this.userRepository.findOne({email:body.email})
+            console.log(body,user)
             if(user){
                 const passwordChecked = bcrypt.compareSync(body.password, user.password);
                 if(passwordChecked){
