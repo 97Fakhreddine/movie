@@ -1,3 +1,4 @@
+import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../assets/styles/signup.css";
@@ -25,7 +26,28 @@ export const SignUp = () => {
       [event.target.name]: event.target.value,
     });
   };
-
+  const signUp: Function = (event: ChangeEvent) => {
+    event.preventDefault();
+    if (
+      signUpForm.name === "" ||
+      signUpForm.email === "" ||
+      signUpForm.password === ""
+    ) {
+      alert("noooooooooo");
+      return;
+    } else {
+      axios
+        .post("http://localhost:3002/users/register", signUpForm)
+        .then(({ data }) => {
+          console.log("==>", data);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("authenticated", data.authenticated);
+          
+          history.push("/movies");
+        })
+        .catch((err) => console.error(err));
+    }
+  };
   return (
     <div className='signup-container'>
       <div className='mainn'>
@@ -74,7 +96,13 @@ export const SignUp = () => {
               required
               onChange={handleSignupForm}
             />
-            <button className='form__button button submit'>SIGN UP</button>
+            <button
+              className='form__button button submit'
+              onClick={(e) => {
+                signUp(e);
+              }}>
+              SIGN UP
+            </button>
           </form>
         </div>
         <div className='containerr b-container' id='b-container'></div>
