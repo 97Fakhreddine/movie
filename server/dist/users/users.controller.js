@@ -19,7 +19,7 @@ let UsersController = class UsersController {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
-    signup(body) {
+    async signup(body) {
         return this.userRepository.signup(body);
     }
     login(body) {
@@ -27,12 +27,14 @@ let UsersController = class UsersController {
     }
 };
 __decorate([
+    common_1.Post("register"),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "signup", null);
 __decorate([
+    common_1.Post('login'),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

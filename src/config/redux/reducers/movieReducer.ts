@@ -7,11 +7,9 @@ export type MoviesList= {
     }
 }
 
-// export const defaultState:IDefaultState={
-//     movies:[] 
-// }
+export const defaultState:MoviesList|any=[]
 
-export const movieReducer=(state:MoviesList|any= [],action:TopRatedMovies):any  =>{
+export const movieReducer=(state=defaultState,action:TopRatedMovies):any  =>{
     if (action.type === GET_TOP_RATED_MOVIES_LIST) {
         return Object.assign(action.topRatedMovies);
       } else {

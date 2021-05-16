@@ -7,6 +7,7 @@ import NOT_FOUND from "../components/NOT_FOUND";
 import { MovieList } from "../pages/MovieList";
 
 function App() {
+
   return (
     <BrowserRouter>
       <Switch>

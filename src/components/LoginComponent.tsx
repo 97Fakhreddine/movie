@@ -1,10 +1,13 @@
+import axios from "axios";
 import { useState, ChangeEvent } from "react";
 import { useHistory } from "react-router-dom";
 import { LoginForm } from "../config/types/formTypes";
-
+import { useDispatch } from "react-redux";
+import "../assets/styles/alertLogin.css";
 export const LoginComponent = () => {
   const history = useHistory();
-
+  const dispatch = useDispatch();
+  const [alertLogin, setAlert] = useState<string>("");
   /**
    *@function handleLogin
    *@param {ChangeEvent<HTMLInputElement>}
@@ -22,12 +25,39 @@ export const LoginComponent = () => {
       [event.target.name]: event.target.value,
     });
   };
-
+  const login: Function = (event: ChangeEvent) => {
+    event.preventDefault();
+    if (loginForm.email === "" || loginForm.password === "") {
+      alert("noooooooooo");
+      return;
+    } else {
+      axios
+        .post("http://localhost:3002/users/login", loginForm)
+        .then(({ data }) => {
+          if (data.authenticated) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("authenticated", data.authenticated);
+            // dispatch(user(data));
+            history.push("/movies");
+            return;
+          } else {
+            setAlert(data.message);
+            return;
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+  };
   return (
     <div className='signup-container'>
       <div className='mainn'>
         <div className='containerr a-container' id='a-container'>
-          <form className='form' id='a-form'>
+          <form
+            className='form'
+            id='a-form'
+            onSubmit={(e) => {
+              login(e);
+            }}>
             <h2 className='form_title title'>Login to your Account</h2>
 
             <input
@@ -50,7 +80,20 @@ export const LoginComponent = () => {
                 handleLogin(event);
               }}
             />
-            <button className='form__button button submit'>Login</button>
+            <div>
+              {alertLogin !== "" ? (
+                <div className='alert'>
+                  <strong>Wrong!</strong> {alertLogin}
+                </div>
+              ) : null}
+            </div>
+            <button
+              className='form__button button submit'
+              onClick={(e) => {
+                login(e);
+              }}>
+              Login
+            </button>
           </form>
         </div>
         <div className='containerr b-container' id='b-container'></div>

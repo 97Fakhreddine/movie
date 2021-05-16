@@ -15,35 +15,75 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
+const jwt_1 = require("@nestjs/jwt");
 const typeorm_2 = require("@nestjs/typeorm");
+const bcrypt = require("bcrypt");
 const user_entity_1 = require("./user.entity");
+const constant_1 = require("../auth/constant");
+;
 let UsersService = class UsersService {
-    constructor(userRepository) {
+    constructor(jwtService, userRepository) {
+        this.jwtService = jwtService;
         this.userRepository = userRepository;
     }
     async signup(body) {
         try {
-            console.log(body);
-            return new Error("INCORRECT USER");
+            const user = await this.userRepository.findOne({ email: body.email });
+            if (user) {
+                return new common_1.NotFoundException("INCORRECT USER");
+            }
+            const saltRounds = 10;
+            const salt = bcrypt.genSaltSync(saltRounds);
+            const hash = bcrypt.hashSync(body.password, salt);
+            body.password = hash;
+            await this.userRepository.save(body);
+            const newToken = await this.jwtService.sign({
+                email: body.email,
+                secret: constant_1.jwtConstants.secret
+            });
+            return {
+                name: body.name,
+                token: newToken,
+                authenticated: true,
+            };
         }
         catch (error) {
-            return new Error();
+            return new Error("User Already exists");
         }
     }
     async login(body) {
         try {
             console.log(body);
-            return new common_1.NotFoundException("INCORRECT USER");
+            const user = await this.userRepository.findOne({ email: body.email });
+            if (user) {
+                const passwordChecked = bcrypt.compareSync(body.password, user.password);
+                if (passwordChecked) {
+                    const newToken = await this.jwtService.sign({
+                        email: body.email,
+                        secret: constant_1.jwtConstants.secret
+                    });
+                    return {
+                        name: user.name,
+                        token: newToken,
+                        authenticated: true,
+                    };
+                }
+                else {
+                    return new common_1.NotFoundException("INCORRECT email OR PASSWORD");
+                }
+            }
+            return new common_1.NotFoundException("INCORRECT email OR PASSWORD");
         }
         catch (error) {
-            return new Error();
+            return new Error("USER DOES NOT EXISTS");
         }
     }
 };
 UsersService = __decorate([
     common_1.Injectable(),
-    __param(0, typeorm_2.InjectRepository(user_entity_1.Users)),
-    __metadata("design:paramtypes", [typeorm_1.Repository])
+    __param(1, typeorm_2.InjectRepository(user_entity_1.Users)),
+    __metadata("design:paramtypes", [jwt_1.JwtService,
+        typeorm_1.Repository])
 ], UsersService);
 exports.UsersService = UsersService;
 //# sourceMappingURL=users.service.js.map
