@@ -64,7 +64,6 @@ export class UsersService {
     async login(body:UserLogin):Promise<Error|LoginSuccess>{
         try{
             const user:IUser = await this.userRepository.findOne({email:body.email})
-            console.log(body,user)
             if(user){
                 const passwordChecked = bcrypt.compareSync(body.password, user.password);
                 if(passwordChecked){
@@ -72,6 +71,8 @@ export class UsersService {
                         email:body.email,
                         secret:jwtConstants.secret
                     })
+                 
+                    
                     return {
                         name:user.name,
                         token:newToken,

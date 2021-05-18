@@ -4,6 +4,9 @@ import { useHistory } from "react-router-dom";
 import { LoginForm } from "../config/types/formTypes";
 import { useDispatch } from "react-redux";
 import "../assets/styles/alertLogin.css";
+import { BASE_URLS } from "../config/auth/BASE_URLS";
+import { user } from "../config/redux/actions/signUp";
+import { topRatedMovies } from "../config/redux/actions/topRatedMovie";
 export const LoginComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -32,12 +35,15 @@ export const LoginComponent = () => {
       return;
     } else {
       axios
-        .post("http://localhost:3002/users/login", loginForm)
+        .post(BASE_URLS + "/users/login", loginForm)
         .then(({ data }) => {
           if (data.authenticated) {
             localStorage.setItem("token", data.token);
             localStorage.setItem("authenticated", data.authenticated);
-            // dispatch(user(data));
+            dispatch(user(data));
+
+            // dispatch(topRatedMovies());
+
             history.push("/movies");
             return;
           } else {

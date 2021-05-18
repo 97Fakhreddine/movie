@@ -5,6 +5,7 @@ import "../assets/styles/signup.css";
 import { SignUpForm } from "../config/types/formTypes";
 import { useDispatch } from "react-redux";
 import { user } from "../config/redux/actions/signUp";
+import { BASE_URLS } from "../config/auth/BASE_URLS";
 export const SignUp = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ export const SignUp = () => {
       return;
     } else {
       axios
-        .post("http://localhost:3002/users/register", signUpForm)
+        .post(BASE_URLS + "/users/register", signUpForm)
         .then(({ data }) => {
           console.log("==>", data);
           localStorage.setItem("token", data.token);
