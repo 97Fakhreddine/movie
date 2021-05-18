@@ -16,3 +16,4 @@ export interface IUSER{
     type:string;
     user:USER
 }
+

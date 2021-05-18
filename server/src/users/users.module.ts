@@ -10,7 +10,7 @@ import { Users } from './user.entity';
   TypeOrmModule.forFeature([Users]),
   JwtModule.register({
     secret: jwtConstants.secret,
-    signOptions: { expiresIn: '25h' },
+    signOptions: { expiresIn: jwtConstants.expireDate },
   })],
   controllers: [UsersController],
   providers: [UsersService],

@@ -1,3 +1,4 @@
 export const jwtConstants={
-    secret:"Hello World"
+    secret:"Hello World",
+    expireDate:"1h"
 }

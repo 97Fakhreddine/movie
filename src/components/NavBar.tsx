@@ -1,8 +1,19 @@
 import logo from "../assets/images/logo.png";
 import "../assets/styles/navbar.css";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import { auth } from "../config/redux/actions/auth";
+
 export const NavBar = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const isAuth = localStorage.getItem("authenticated");
+  const Logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("authenticated");
+    dispatch(auth({ authenticated: false, token: "" }));
+    history.push("/login");
+  };
   return (
     <nav className='navbar fixed-top navbar-expand-lg navbar-light bg-light'>
       <div className='navbar-brand'>
@@ -36,21 +47,39 @@ export const NavBar = () => {
               Home <span className='sr-only'>(current)</span>
             </div>
           </li>
-          <li
-            className='nav-item'
-            onClick={() => {
-              history.push("/signup");
-            }}>
-            <div className='nav-link li'>Sign up</div>
-          </li>
-          <li
-            className='nav-item'
-            onClick={() => {
-              history.push("/login");
-            }}>
-            <div className='nav-link li'>Login</div>
-          </li>
-          <li className='nav-item dropdown'>
+          {isAuth ? null : (
+            <li
+              className='nav-item'
+              onClick={() => {
+                history.push("/signup");
+              }}>
+              <div className='nav-link li'>Sign up</div>
+            </li>
+          )}
+
+          {isAuth ? null : (
+            <li
+              className='nav-item'
+              onClick={() => {
+                history.push("/login");
+              }}>
+              <div className='nav-link li'>Login</div>
+            </li>
+          )}
+
+          {isAuth ? (
+            <li className='nav-item' onClick={() => history.push("/movies")}>
+              <div className='nav-link li'>Movies</div>
+            </li>
+          ) : null}
+
+          {isAuth ? (
+            <li className='nav-item' onClick={() => Logout()}>
+              <div className='nav-link li'>Logout</div>
+            </li>
+          ) : null}
+
+          {/* <li className='nav-item dropdown'>
             <div
               className='nav-link li dropdown-toggle'
               id='navbarDropdownMenuLink'
@@ -66,7 +95,7 @@ export const NavBar = () => {
               <li className='dropdown-item'>Another action</li>
               <li className='dropdown-item'>Something else here</li>
             </div>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

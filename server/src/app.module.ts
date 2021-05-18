@@ -7,13 +7,12 @@ import { UsersModule } from './users/users.module';
 import { Users } from './users/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './auth/constant';
-import { UsersController } from './users/users.controller';
 @Module({
   imports: [TypeOrmModule.forRoot(), AuthModule, UsersModule,
     TypeOrmModule.forFeature([Users]),
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '25h' },
+      signOptions: { expiresIn: jwtConstants.expireDate },
     })],
   controllers: [AppController],
   providers: [AppService],
