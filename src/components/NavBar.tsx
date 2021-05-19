@@ -3,7 +3,7 @@ import "../assets/styles/navbar.css";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { auth } from "../config/redux/actions/auth";
-
+import "../assets/styles/searchMovie.css";
 export const NavBar = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export const NavBar = () => {
         <img
           src={logo}
           alt=''
-          className='logo'
+          className='logo search-movie-logo'
           onClick={() => {
             history.push("/");
           }}
