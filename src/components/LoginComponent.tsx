@@ -6,11 +6,12 @@ import { useDispatch } from "react-redux";
 import "../assets/styles/alertLogin.css";
 import { BASE_URLS } from "../config/auth/BASE_URLS";
 import { user } from "../config/redux/actions/signUp";
-import { topRatedMovies } from "../config/redux/actions/topRatedMovie";
+
 export const LoginComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [alertLogin, setAlert] = useState<string>("");
+
   /**
    *@function handleLogin
    *@param {ChangeEvent<HTMLInputElement>}
@@ -22,16 +23,22 @@ export const LoginComponent = () => {
     email: "",
     password: "",
   });
+
   const handleLogin = (event: ChangeEvent<HTMLInputElement>) => {
     setLoginForm({
       ...loginForm,
       [event.target.name]: event.target.value,
     });
   };
+
   const login: Function = (event: ChangeEvent) => {
     event.preventDefault();
-    if (loginForm.email === "" || loginForm.password === "") {
-      alert("noooooooooo");
+    if (
+      loginForm.email === "" ||
+      loginForm.password === "" ||
+      loginForm.password.length < 8
+    ) {
+      alert("Password is too short");
       return;
     } else {
       axios
@@ -41,8 +48,6 @@ export const LoginComponent = () => {
             localStorage.setItem("token", data.token);
             localStorage.setItem("authenticated", data.authenticated);
             dispatch(user(data));
-
-            // dispatch(topRatedMovies());
 
             history.push("/movies");
             return;

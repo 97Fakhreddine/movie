@@ -5,12 +5,14 @@ import { CarrouselMovie } from "../components/CarrouselMovies";
 import TextField from "@material-ui/core/TextField";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Imovie } from "../config/types/movie";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, ChangeEvent } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { Spinner } from "../components/Spinner";
 import { topRatedMovies } from "../config/redux/actions/topRatedMovie";
 import { v4 as uuid_v4 } from "uuid";
+import "../assets/styles/searchMovie.css";
+import { Copyright } from "../components/CopyRight";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
         borderRaduis: "2%",
         marginTop: "5%",
       },
+    },
+    body: {
+      backgroundColor: "white",
     },
   })
 );
@@ -40,7 +45,11 @@ export const MovieList = () => {
         `https://api.themoviedb.org/3/movie/top_rated?api_key=2e0df5e71427097806870ac8ccd99f67&language=en-US`
       )
       .then(({ data }) => {
+        // log the data
+        console.log(data.results.slice());
+        // set the data to the state
         setMovies(data.results);
+        // dispatch the data to the store
         dispatch(topRatedMovies(data));
       })
       .catch((err) => console.log(err));
@@ -52,35 +61,45 @@ export const MovieList = () => {
     if (isMounted) {
       getMovies();
     }
-
     return () => {
       isMounted = false;
     };
-  }, [movies]);
+  }, []);
+
+  const searchForMovieUsingTitle: Function = (
+    event: ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    let updatedList = movies;
+
+    updatedList = updatedList.filter((movie) => {
+      return movie.title.toLowerCase().match(event.target.value.toLowerCase());
+    });
+    console.log("updatedList", updatedList);
+
+    setMovies(updatedList);
+
+    if (event.target.value == "") {
+      getMovies();
+    }
+  };
 
   return (
     <div className='movieList-container'>
       <div>
         <NavBar />
       </div>
-      <div
-      // style={{
-      //   marginTop: "55%",
-      // }}
-      >
+      <div>
         <CarrouselMovie />
       </div>
-      <div className='movie-list'>
-        <form className={classes.root} noValidate autoComplete='off'>
-          <div>
-            <TextField
-              id='outlined-password-input'
-              label='Search...'
-              type='text'
-              variant='outlined'
-            />
-          </div>
-        </form>
+      <div className='movie-list '>
+        <div className='ui icon input'>
+          <input
+            type='text'
+            placeholder='Search...'
+            onChange={(event) => searchForMovieUsingTitle(event)}
+          />
+          <i className='search icon'></i>
+        </div>
         <div className='ui link cards'>
           {movies.length > 0 ? (
             movies.map((movie: Imovie, index: number) => {
@@ -90,6 +109,9 @@ export const MovieList = () => {
             <Spinner />
           )}
         </div>
+      </div>
+      <div className={classes.body}>
+        <Copyright />
       </div>
     </div>
   );

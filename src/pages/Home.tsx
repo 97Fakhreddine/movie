@@ -80,10 +80,10 @@ export const Home = () => {
             <p>
               <span style={{ fontSize: "36px" }}>Where can I watch?</span> Watch
               anywhere, anytime, on an unlimited number of devices. Sign in with
-              your Netflix account to watch instantly on the web at netflix.com
-              from your personal computer or on any internet-connected device
-              that offers the Netflix app, including smart TVs, smartphones,
-              tablets, streaming media players and game consoles.
+              your account to watch instantly on the web at M.com from your
+              personal computer or on any internet-connected device that offers
+              the app, including smart TVs, smartphones, tablets, streaming
+              media players and game consoles.
             </p>
             <button className='button' onClick={() => history.push("/signup")}>
               Signup now
