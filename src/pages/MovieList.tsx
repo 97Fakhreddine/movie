@@ -12,6 +12,7 @@ import { Spinner } from "../components/Spinner";
 import { topRatedMovies } from "../config/redux/actions/topRatedMovie";
 import { v4 as uuid_v4 } from "uuid";
 import "../assets/styles/searchMovie.css";
+import { Copyright } from "../components/CopyRight";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
         borderRaduis: "2%",
         marginTop: "5%",
       },
+    },
+    body: {
+      backgroundColor: "white",
     },
   })
 );
@@ -66,7 +70,7 @@ export const MovieList = () => {
     event: ChangeEvent<HTMLTextAreaElement>
   ) => {
     let updatedList = movies;
-    
+
     updatedList = updatedList.filter((movie) => {
       return movie.title.toLowerCase().match(event.target.value.toLowerCase());
     });
@@ -88,17 +92,14 @@ export const MovieList = () => {
         <CarrouselMovie />
       </div>
       <div className='movie-list '>
-        <form className={classes.root} noValidate autoComplete='off'>
-          <div className='search-movie'>
-            <TextField
-              id='outlined-password-input'
-              label='Search...'
-              type='text'
-              variant='outlined'
-              onChange={(event) => searchForMovieUsingTitle(event)}
-            />
-          </div>
-        </form>
+        <div className='ui icon input'>
+          <input
+            type='text'
+            placeholder='Search...'
+            onChange={(event) => searchForMovieUsingTitle(event)}
+          />
+          <i className='search icon'></i>
+        </div>
         <div className='ui link cards'>
           {movies.length > 0 ? (
             movies.map((movie: Imovie, index: number) => {
@@ -108,6 +109,9 @@ export const MovieList = () => {
             <Spinner />
           )}
         </div>
+      </div>
+      <div className={classes.body}>
+        <Copyright />
       </div>
     </div>
   );
