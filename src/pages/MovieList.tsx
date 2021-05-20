@@ -1,8 +1,7 @@
 import { NavBar } from "../components/NavBar";
-import Movie from "../components/Movie";
+import { Movie } from "../components/Movie";
 import "../assets/styles/movieList.css";
 import { CarrouselMovie } from "../components/CarrouselMovies";
-import TextField from "@material-ui/core/TextField";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Imovie } from "../config/types/movie";
 import { useCallback, useEffect, useState, ChangeEvent } from "react";
@@ -13,6 +12,7 @@ import { topRatedMovies } from "../config/redux/actions/topRatedMovie";
 import { v4 as uuid_v4 } from "uuid";
 import "../assets/styles/searchMovie.css";
 import { Copyright } from "../components/CopyRight";
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -83,6 +83,9 @@ export const MovieList = () => {
     }
   };
 
+  const watchMore = (index: number) => {
+    console.log("index==>", index);
+  };
   return (
     <div className='movieList-container'>
       <div>
@@ -103,7 +106,13 @@ export const MovieList = () => {
         <div className='ui link cards'>
           {movies.length > 0 ? (
             movies.map((movie: Imovie, index: number) => {
-              return <Movie movie={movie} key={uuid_v4() || index} />;
+              return (
+                <Movie
+                  movie={movie}
+                  key={uuid_v4() || index}
+                  watchMore={watchMore}
+                />
+              );
             })
           ) : (
             <Spinner />

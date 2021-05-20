@@ -20,7 +20,7 @@ export const NavBar = () => {
         <img
           src={logo}
           alt=''
-          className='logo search-movie-logo'
+          className='logo '
           onClick={() => {
             history.push("/");
           }}

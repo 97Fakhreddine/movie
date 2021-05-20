@@ -1,7 +1,16 @@
 import { base_url } from "../config/baseURLImage";
 import { Imovie } from "../config/types/movie";
 import "../assets/styles/movieCard.css";
-export default function Movie({ movie }: Imovie | any) {
+
+export type MovieProps={
+  movie:Imovie;
+  watchMore:(index:number)=>void
+}
+
+
+export const Movie:React.FC<MovieProps>=({ movie,watchMore }) =>{
+
+  
   return (
     // <div className='card'>
     //   <div className='image'>
@@ -38,15 +47,13 @@ export default function Movie({ movie }: Imovie | any) {
           </div> */}
           <div className='movie-content'>
             <div className='movie-header'>
-              <h1 className='movie-title'>Blade Runner</h1>
-              <h4 className='movie-info'>(1982) Sci-Fi, Thriller</h4>
+              <h1 className='movie-title'>{movie.title}</h1>
+              <h4 className='movie-info'>{"("+movie.release_date+")"}, Thriller</h4>
             </div>
             <p className='movie-desc'>
-              A blade runner must pursue and try to terminate four replicants
-              who stole a ship in space and have returned to Earth to find their
-              creator.
+            If you want to see more about the movie, you can simply click on Watch movie button or click on the displayed image of the movie...
             </p>
-            <a className='btn btn-outline' href='#'>
+            <a className='btn btn-outline' onClick={(id)=>{watchMore(movie.id)}}>
               Watch Trailer
             </a>
           </div>

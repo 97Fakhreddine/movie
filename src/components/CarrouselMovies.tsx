@@ -25,14 +25,15 @@ export const CarrouselMovie = () => {
   return (
     <div className={classes.root}>
       <Carousel showArrows={true}>
-        {store?.results.map((movie: Imovie, index: number) => {
-          return (
-            <div key={index}>
-              <img src={`${base_url + movie.backdrop_path}`} />
-              <p className='legend'>{movie.title}</p>
-            </div>
-          );
-        })}
+        {store &&
+          store.results.map((movie: Imovie, index: number) => {
+            return (
+              <div key={index}>
+                <img src={base_url + movie.backdrop_path} />
+                <p className='legend'>{movie.title}</p>
+              </div>
+            );
+          })}
         {/* {array.map((el: number, index: number) => {
           return (
             <div key={uuid_v4() || index}>
